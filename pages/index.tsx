@@ -113,7 +113,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
         >
           Canon Rebel XS
         </a>
-        mostly by{' '}
+        {' '}mostly by{' '}
         <a
           href="https://www.yusuf.fyi/"
           target="_blank"
