@@ -104,34 +104,24 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
         </div>
       </main>
       <footer className="p-6 text-center text-white/80 sm:p-12">
-        Thank you to{' '}
+        Taken on a{' '}
         <a
-          href="https://edelsonphotography.com/"
+          href="https://https://www.amazon.com/Canon-XS-18-55mm-3-5-5-6-Black/dp/B001CBKJGG"
           target="_blank"
           className="font-semibold hover:text-white"
           rel="noreferrer"
         >
-          Josh Edelson
+          Canon Rebel XS
         </a>
-        ,{' '}
+        mostly by{' '}
         <a
-          href="https://www.newrevmedia.com/"
+          href="https://www.yusuf.fyi/"
           target="_blank"
           className="font-semibold hover:text-white"
           rel="noreferrer"
         >
-          Jenny Morgan
+          Yusuf
         </a>
-        , and{' '}
-        <a
-          href="https://www.garysextonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Gary Sexton
-        </a>{' '}
-        for the pictures.
       </footer>
     </>
   )
