@@ -1,44 +1,44 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import Bridge from '../components/Icons/Bridge'
-import Logo from '../components/Icons/Logo'
-import Modal from '../components/Modal'
-import cloudinary from '../utils/cloudinary'
-import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
-import type { ImageProps } from '../utils/types'
-import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Bridge from "../components/Icons/Bridge";
+import Logo from "../components/Icons/Logo";
+import Modal from "../components/Modal";
+import cloudinary from "../utils/cloudinary";
+import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
+import type { ImageProps } from "../utils/types";
+import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
 
 const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
-  const router = useRouter()
-  const { photoId } = router.query
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
+  const router = useRouter();
+  const { photoId } = router.query;
+  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
 
   useEffect(() => {
     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
     if (lastViewedPhoto && !photoId) {
       document
         .querySelector(`#photo-${lastViewedPhoto}`)
-        .scrollIntoView({ block: 'center' })
+        .scrollIntoView({ block: "center" });
 
-      setLastViewedPhoto(null)
+      setLastViewedPhoto(null);
     }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto])
+  }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
 
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>Yusuf's Photo Gallery</title>
         <meta
           property="og:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
+          content="https://gallery.yusuf.fyi/og-image.ong"
         />
         <meta
           name="twitter:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
+          content="https://gallery.yusuf.fyi/og-image.png"
         />
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
@@ -46,7 +46,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           <Modal
             images={images}
             onClose={() => {
-              setLastViewedPhoto(photoId)
+              setLastViewedPhoto(photoId);
             }}
           />
         )}
@@ -64,7 +64,10 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
               Yusuf's Photo Gallery
             </h1>
             <p className="max-w-[40ch] text-white/75 sm:max-w-[32ch]">
-I found an old Canon camera in my closet so I decided that photography is my new hobby, feel free to look through all of these photos, there is a fun story behind each one!</p>
+              I found an old Canon camera in my closet so I decided that
+              photography is my new hobby, feel free to look through all of
+              these photos, there is a fun story behind each one!
+            </p>
             <a
               className="pointer z-10 mt-6 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white md:mt-4"
               href="https://yusuf.fyi"
@@ -86,7 +89,7 @@ I found an old Canon camera in my closet so I decided that photography is my new
               <Image
                 alt="Next.js Conf photo"
                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: 'translate3d(0, 0, 0)' }}
+                style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
@@ -102,7 +105,7 @@ I found an old Canon camera in my closet so I decided that photography is my new
         </div>
       </main>
       <footer className="p-6 text-center text-white/80 sm:p-12">
-        Taken on a{' '}
+        Taken on a{" "}
         <a
           href="https://www.amazon.com/Canon-XS-18-55mm-3-5-5-6-Black/dp/B001CBKJGG"
           target="_blank"
@@ -110,8 +113,8 @@ I found an old Canon camera in my closet so I decided that photography is my new
           rel="noreferrer"
         >
           Canon Rebel XS
-        </a>
-        {' '}mostly by{' '}
+        </a>{" "}
+        mostly by{" "}
         <a
           href="https://www.yusuf.fyi/"
           target="_blank"
@@ -122,20 +125,20 @@ I found an old Canon camera in my closet so I decided that photography is my new
         </a>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
     .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-    .sort_by('public_id', 'desc')
+    .sort_by("public_id", "desc")
     .max_results(400)
-    .execute()
-  let reducedResults: ImageProps[] = []
+    .execute();
+  let reducedResults: ImageProps[] = [];
 
-  let i = 0
+  let i = 0;
   for (let result of results.resources) {
     reducedResults.push({
       id: i,
@@ -143,22 +146,22 @@ export async function getStaticProps() {
       width: result.width,
       public_id: result.public_id,
       format: result.format,
-    })
-    i++
+    });
+    i++;
   }
 
   const blurImagePromises = results.resources.map((image: ImageProps) => {
-    return getBase64ImageUrl(image)
-  })
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
+    return getBase64ImageUrl(image);
+  });
+  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
 
   for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
+    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i];
   }
 
   return {
     props: {
       images: reducedResults,
     },
-  }
+  };
 }
