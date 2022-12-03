@@ -64,14 +64,14 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
               Yusuf's Photo Gallery
             </h1>
             <p className="max-w-[40ch] text-white/75 sm:max-w-[32ch]">
-I found an old canon camera in the closet so I decided that photography is my new hobby, feel free to look through all of these photos, there is a story behind each one!</p>
+I found an old Canon camera in my closet so I decided that photography is my new hobby, feel free to look through all of these photos, there is a fun story behind each one!</p>
             <a
               className="pointer z-10 mt-6 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white md:mt-4"
-              href="https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-cloudinary&project-name=nextjs-image-gallery&repository-name=with-cloudinary&env=NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,CLOUDINARY_FOLDER&envDescription=API%20Keys%20from%20Cloudinary%20needed%20to%20run%20this%20application"
+              href="https://yusuf.fyi"
               target="_blank"
               rel="noreferrer"
             >
-              Clone and Deploy
+              Check out my blog
             </a>
           </div>
           {images.map(({ id, public_id, format, blurDataUrl }) => (
@@ -104,7 +104,7 @@ I found an old canon camera in the closet so I decided that photography is my ne
       <footer className="p-6 text-center text-white/80 sm:p-12">
         Taken on a{' '}
         <a
-          href="https://https://www.amazon.com/Canon-XS-18-55mm-3-5-5-6-Black/dp/B001CBKJGG"
+          href="https://www.amazon.com/Canon-XS-18-55mm-3-5-5-6-Black/dp/B001CBKJGG"
           target="_blank"
           className="font-semibold hover:text-white"
           rel="noreferrer"
