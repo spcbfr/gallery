@@ -33,11 +33,11 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
         <title>Yusuf's Photo Gallery</title>
         <meta
           property="og:image"
-          content="https://gallery.yusuf.fyi/og-image.ong"
+          content="https://gallery.yusuf.fyi/og-image.jpg"
         />
         <meta
           name="twitter:image"
-          content="https://gallery.yusuf.fyi/og-image.png"
+          content="https://gallery.yusuf.fyi/og-image.jpg"
         />
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
